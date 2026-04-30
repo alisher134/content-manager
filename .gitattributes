@@ -1,0 +1,29 @@
+# Force LF line endings for all text files
+* text=auto eol=lf
+
+# Explicitly mark files as text or binary
+*.js text
+*.jsx text
+*.ts text
+*.tsx text
+*.json text
+*.css text
+*.md text
+*.html text
+*.svg text
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.eot binary
+
+# Node.js specific
+package-lock.json -diff

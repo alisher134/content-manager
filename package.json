@@ -1,9 +1,12 @@
 {
-  "name": "practice",
+  "name": "content-manager",
   "private": true,
+  "description": "Content manager for managing content across different platforms.",
   "version": "0.0.0",
   "type": "module",
+  "packageManager": "npm@11.11.1",
   "scripts": {
+    "preinstall": "npx only-allow npm",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
@@ -12,6 +15,11 @@
     "server": "node server/server.js",
     "prepare": "husky install"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alisher134/content-manager"
+  },
+  "authors": "Alisher Rakhmanov <alisherrakhmanov134@gmail.com>",
   "dependencies": {
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
