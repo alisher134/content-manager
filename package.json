@@ -21,6 +21,7 @@
   },
   "authors": "Alisher Rakhmanov <alisherrakhmanov134@gmail.com>",
   "dependencies": {
+    "@radix-ui/react-separator": "1.1.8",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "json-server-auth": "^2.1.0",

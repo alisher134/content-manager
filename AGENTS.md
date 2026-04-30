@@ -68,6 +68,22 @@ Always use path aliases. Deep relative imports (`../../..`) are strictly forbidd
 
 - `@app/*`, `@pages/*`, `@components/*`, `@services/*`, `@hooks/*`, `@utils/*`, `@types/*`
 
+## 8. Git, Tooling & Type Safety
+
+### Git Workflow
+
+- **Commit Messages**: Strictly follow **Conventional Commits** (`feat:`, `fix:`, `chore:`, `refactor:`, etc.).
+- **Hooks**: Never bypass Husky hooks. All code must pass `lint-staged` before commit.
+
+### Package Management
+
+- **npm Only**: Use only **npm** for dependency management. `package-lock.json` is the source of truth. Using `yarn` or `pnpm` is forbidden.
+
+### TypeScript Strictness
+
+- **Strict Mode**: `strict: true` is non-negotiable.
+- **Safety Flags**: Always maintain `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, and `noPropertyAccessFromIndexSignature` to prevent runtime errors.
+
 ---
 
 _Failure to follow these rules will result in a linting error or architectural drift. Stay Senior._
