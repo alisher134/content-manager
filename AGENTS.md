@@ -49,6 +49,7 @@ Separate the "How it looks" from "What it does". If a component has more than 2-
 - **Specific Naming**: Use `SearchBar.helpers.ts` instead of `helpers.ts`. This prevents confusion in global searches and tab navigation.
 - **Component Files**: Must be `PascalCase.tsx`.
 - **Utilities**: Must be `camelCase.ts`.
+- **Public API (Gateways)**: Every feature, page, or UI component folder must have an `index.ts` file. This acts as a barrier, exporting only what is necessary for the outside world. Deep imports into a module's internal files are strictly forbidden.
 
 ## 5. Performance & React Best Practices
 
@@ -83,6 +84,38 @@ Always use path aliases. Deep relative imports (`../../..`) are strictly forbidd
 
 - **Strict Mode**: `strict: true` is non-negotiable.
 - **Safety Flags**: Always maintain `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, and `noPropertyAccessFromIndexSignature` to prevent runtime errors.
+
+## 9. UI/UX & Premium Aesthetics
+
+- **Visual Depth**: Use glassmorphism (`backdrop-blur`), subtle background glows, and soft shadows to create a premium, layered feel.
+- **Seamless Layouts**: Prefer negative space and subtle separators over harsh borders. Implement independent scrolling areas (Seamless Design) for sidebars when content exceeds the viewport.
+- **Responsiveness**: Always use centered containers (`max-w-*`) for main content to prevent over-stretching on ultra-wide displays.
+
+## 10. Clean Code Standards
+
+- **Strict No-Comments Policy**: Production code must be clean and self-explanatory. Inline comments and block comments are forbidden. If logic is complex, refactor it into well-named functions or hooks.
+- **Micro-animations**: Use subtle transitions and hover effects to make the interface feel alive and responsive.
+
+## 11. Accessibility & Semantic HTML
+
+- **Strict Semantics**: Use appropriate HTML5 tags:
+  - `<main>` for primary content.
+  - `<nav>` for navigation sections.
+  - `<aside>` for sidebars or complementary content.
+  - `<article>` for self-contained content blocks (posts, cards).
+  - `<section>` for grouping related content with a heading.
+
+## 15. Security Hardening
+
+- **XSS Prevention**: Always sanitize user-generated content before rendering it as HTML. Use trusted libraries for sanitization.
+- **Auth Storage**: Never store sensitive tokens in `localStorage`. Prefer secure, `HttpOnly` cookies for authentication tokens.
+- **Input Sanitization**: All user inputs must be trimmed and sanitized before being sent to the server.
+
+## 16. Performance Optimization (Senior Level)
+
+- **Code Splitting**: Use `React.lazy` and `Suspense` for route-based code splitting to reduce the initial bundle size.
+- **Virtualization**: Use windowing/virtualization for long lists (e.g., more than 100 items) to maintain high FPS.
+- **Asset Optimization**: All images must be lazy-loaded and served in modern formats (WebP/AVIF).
 
 ---
 

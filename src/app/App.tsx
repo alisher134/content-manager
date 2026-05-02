@@ -1,15 +1,17 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
-import { Dashboard } from '@pages/Dashboard';
-import { Login } from '@pages/Login';
-import { NotFound } from '@pages/NotFound';
-import { PostDetails } from '@pages/PostDetails';
-import { PostEditor } from '@pages/PostEditor';
-import { PostFeed } from '@pages/PostFeed';
-import { Profile } from '@pages/Profile';
-import { ProfileSettings } from '@pages/ProfileSettings';
-import { Register } from '@pages/Register';
-import { Team } from '@pages/Team';
+import {
+  Dashboard,
+  Login,
+  NotFound,
+  PostDetails,
+  PostEditor,
+  PostFeed,
+  Profile,
+  ProfileSettings,
+  Register,
+  Team,
+} from '@pages';
 
 import { ROUTES } from '@/app/Routes';
 
@@ -18,6 +20,7 @@ export const App = () => {
     <BrowserRouter>
       <div className="bg-background text-foreground flex min-h-screen flex-col">
         <Routes>
+          <Route path="/" element={<Navigate to={ROUTES.DASHBOARD} replace />} />
           <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
           <Route path={ROUTES.POSTS} element={<PostFeed />} />
           <Route path={ROUTES.POST_DETAILS} element={<PostDetails />} />

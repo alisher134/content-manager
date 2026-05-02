@@ -55,8 +55,7 @@ export default tseslint.config(
           groups: [
             ['^react', '^@?\\w'], // React and external packages
             ['^@app(/.*|$)', '^@pages(/.*|$)'], // Internal Aliases
-            ['^@components(/.*|$)', '^@services(/.*|$)', '^@hooks(/.*|$)'],
-            ['^@utils(/.*|$)', '^@types(/.*|$)', '^@assets(/.*|$)'],
+            ['^@features(/.*|$)', '^@shared(/.*|$)'], // New Feature-based Aliases
             ['^\\.\\.(?!/?$)', '^\\.\\./?$'], // Parent imports
             ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'], // Relative imports
             ['^.+\\.css$'], // Style imports
@@ -81,7 +80,13 @@ export default tseslint.config(
       // --- Quality & Logic (Unicorn + SonarJS) ---
       'unicorn/filename-case': [
         'error',
-        { case: 'pascalCase', ignore: ['main.tsx', 'vite-env.d.ts', 'env.d.ts', 'utils.ts'] },
+        {
+          cases: {
+            pascalCase: true,
+            camelCase: true,
+          },
+          ignore: ['main.tsx', 'vite-env.d.ts', 'env.d.ts'],
+        },
       ],
       'unicorn/no-null': 'off', // React often uses null
       'unicorn/prevent-abbreviations': 'off',
@@ -140,16 +145,17 @@ export default tseslint.config(
   },
   prettier,
   {
-    // Architectural Boundaries: components cannot import from pages
-    files: ['src/components/**/*.{ts,tsx}'],
+    // Architectural Boundaries: shared components cannot import from pages or features
+    files: ['src/shared/components/**/*.{ts,tsx}'],
     rules: {
       'no-restricted-imports': [
         'error',
         {
           patterns: [
             {
-              group: ['@pages/*', '../pages/*'],
-              message: 'Architecture Violation: Shared components cannot import from pages.',
+              group: ['@pages/*', '../pages/*', '@features/*', '../features/*'],
+              message:
+                'Architecture Violation: Shared components cannot import from pages or features.',
             },
           ],
         },
@@ -157,20 +163,46 @@ export default tseslint.config(
     },
   },
   {
-    // Architectural Boundaries: hooks cannot import from components
-    files: ['src/hooks/**/*.{ts,tsx}'],
+    // Architectural Boundaries: shared hooks cannot import from components, pages, or features
+    files: ['src/shared/hooks/**/*.{ts,tsx}'],
     rules: {
       'no-restricted-imports': [
         'error',
         {
           patterns: [
             {
-              group: ['@components/*', '../components/*'],
-              message: 'Architecture Violation: Hooks cannot import from components.',
+              group: ['@shared/components/*', '@pages/*', '@features/*'],
+              message:
+                'Architecture Violation: Shared hooks cannot import from UI components or features.',
             },
           ],
         },
       ],
+    },
+  },
+  {
+    // Architectural Boundaries: features cannot import from other features (strict separation)
+    files: ['src/features/**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['@features/*'],
+              message:
+                'Architecture Violation: Features must be independent. Cross-feature imports are forbidden.',
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    // Exception: Allow a feature to import its own sub-modules (index.ts acts as public API)
+    files: ['src/features/**/index.ts'],
+    rules: {
+      'no-restricted-imports': 'off',
     },
   },
 );

@@ -1,0 +1,8 @@
+- `[x]` Overhaul PostFeed Layout (Seamless Sidebar)
+- `[x]` Clean Code (Remove all comments)
+- `[x]` Semantic HTML Audit (Dashboard, PostDetails, PostFeed)
+- `[x]` Final Semantic Audit (Login, Register, Profile, Team, PostEditor, NotFound)
+- `[x]` Public API Implementation (index.ts gateways)
+- `[x]` Consolidate Imports across the project
+- `[x]` Update AGENTS.md with Senior standards
+- `[x]` Final Lint, Format, and Build Validation
