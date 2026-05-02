@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 
 import { ROUTES } from '@app/Routes';
 
-import { LoginForm } from '@features/auth';
+import { ForgotPasswordForm } from '@features/auth/components/ForgotPasswordForm';
 import { Card, CardContent, CardDescription, CardTitle } from '@shared/components';
 
-export const Login = () => {
+export const ForgotPassword = () => {
   return (
     <main className="bg-background relative flex min-h-screen w-full items-center justify-center overflow-hidden px-6">
       <div className="bg-primary/10 absolute -top-24 -left-24 h-96 w-96 rounded-full blur-[100px]" />
@@ -22,15 +23,25 @@ export const Login = () => {
             </span>
           </Link>
           <div className="mt-4 space-y-1.5">
-            <CardTitle className="text-2xl font-bold tracking-tight">Welcome back</CardTitle>
+            <CardTitle className="text-2xl font-bold tracking-tight">Forgot password?</CardTitle>
             <CardDescription className="text-muted-foreground text-sm">
-              Enter your email to sign in to your account
+              Enter your email and we&apos;ll send you a link to reset your password.
             </CardDescription>
           </div>
         </header>
 
-        <CardContent className="pb-12">
-          <LoginForm />
+        <CardContent className="pb-8">
+          <ForgotPasswordForm />
+
+          <div className="mt-8 text-center">
+            <Link
+              to={ROUTES.LOGIN}
+              className="text-muted-foreground hover:text-primary inline-flex items-center text-sm font-medium transition-colors"
+            >
+              <ArrowLeft className="mr-2 size-4" />
+              Back to login
+            </Link>
+          </div>
         </CardContent>
       </Card>
 

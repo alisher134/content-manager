@@ -4,6 +4,7 @@ export * from './Dialog';
 export * from './Empty';
 export * from './Input';
 export * from './Label';
+export * from './PasswordInput';
 export * from './Popover';
 export * from './Separator';
 export * from './Skeleton';

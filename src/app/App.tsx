@@ -14,6 +14,7 @@ import {
 } from '@pages';
 
 import { ROUTES } from '@/app/Routes';
+import { ForgotPassword } from '@/pages/ForgotPassword/ForgotPassword';
 
 export const App = () => {
   return (
@@ -31,6 +32,7 @@ export const App = () => {
           <Route path={ROUTES.PROFILE_SETTINGS} element={<ProfileSettings />} />
           <Route path={ROUTES.LOGIN} element={<Login />} />
           <Route path={ROUTES.REGISTER} element={<Register />} />
+          <Route path={ROUTES.FORGOT_PASSWORD} element={<ForgotPassword />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

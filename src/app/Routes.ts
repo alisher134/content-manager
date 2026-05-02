@@ -9,6 +9,7 @@ export const ROUTES = {
   PROFILE_SETTINGS: '/profile/settings',
   LOGIN: '/login',
   REGISTER: '/register',
+  FORGOT_PASSWORD: '/forgot-password',
 } as const;
 
 export const getRoute = {
